@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?!= include('Stylesheet'); ?>
+  </head>
+  <body>
+    <div class="app">
+
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <div class="brand">
+            <div class="brand-logo">
+              <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h1>Sistema de Taller</h1>
+            <p>Control de equipos <span class="live-dot" style="animation:pulse-live 2s infinite;"></span></p>
+          </div>
+          <nav class="menu">
+            <div class="nav-section">Principal</div>
+
+            <button class="menu-item active" onclick="showSection('dashboard', this)">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+              Dashboard
+              <span class="active-curve-bottom"></span>
+            </button>
+
+            <button class="menu-item" onclick="showSection('equipos', this)">
+              <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              Equipos
+              <span class="active-curve-bottom"></span>
+            </button>
+
+            <div class="nav-section">Gestión</div>
+
+            <button class="menu-item" onclick="showSection('nuevo', this)">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Nuevo registro
+              <span class="active-curve-bottom"></span>
+            </button>
+
+            <button class="menu-item" onclick="showSection('edicion', this)">
+              <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              Editar registros
+              <span class="active-curve-bottom"></span>
+            </button>
+            <button class="menu-item" onclick="showSection('historial', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Historial Cliente
+              <span class="active-curve-bottom"></span>
+            </button>
+            <button class="menu-item" onclick="showSection('kpiTecnicos', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              KPI Técnicos
+              <span class="active-curve-bottom"></span>
+            </button>
+            <button class="menu-item" onclick="showSection('repuestos', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+              </svg>
+              Repuestos Clientes
+              <span class="active-curve-bottom"></span>
+            </button>
+            <div class="nav-section">Calidad</div>
+
+            <button class="menu-item" onclick="showSection('calidad', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+              Control de Calidad
+              <span class="active-curve-bottom"></span>
+            </button>
+
+            <button class="menu-item" onclick="showSection('fichas', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Fichas
+              <span class="active-curve-bottom"></span>
+            </button>
+            <div class="nav-section">Logística</div>
+            <button class="menu-item" onclick="showSection('stock', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              Stock Logística
+              <span class="active-curve-bottom"></span>
+            </button>
+              <button class="menu-item" onclick="showSection('checklistbaja', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+              Checklist Baja
+              <span class="active-curve-bottom"></span>
+            </button>
+            
+            <div class="nav-section">Análisis</div>
+            <button class="menu-item" onclick="showSection('checklist', this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              Checklist Logística
+              <span class="active-curve-bottom"></span>
+            </button>
+            <button class="menu-item" onclick="showSection('dashboard', this); loadDashboard();">
+              <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              Ingresos
+              <span class="active-curve-bottom"></span>
+            </button>
+
+            <button class="menu-item" onclick="showSection('actividad', this); loadActividad();">
+              <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Actividad
+              <span class="active-curve-bottom"></span>
+            </button>
+          </nav>
+        </div>
+        <div class="sidebar-footer">
+          <div class="user-card">
+            <div class="user-avatar">A</div>
+            <div>
+              <div class="user-name">Administrador</div>
+              <div class="user-role">Acceso completo</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="content">
+
+        <!-- ── TOPBAR ── -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <h2 id="pageTitle">Dashboard</h2>
+            <p class="subtitle" id="pageSubtitle">Monitoreo y trazabilidad de equipos en taller</p>
+          </div>
+          <div class="topbar-actions">
+            <!-- Tabs de período -->
+            <div id="dashTimeTabs" style="display:flex;background:var(--bg-soft);border-radius:var(--radius-md);padding:3px;border:0.5px solid var(--border-soft);gap:2px;">
+              <button class="search-tab" id="tabHoy" onclick="aplicarTabPeriodo('hoy',this)" style="padding:6px 12px;font-size:11px;">Hoy</button>
+              <button class="search-tab" id="tabSemana" onclick="aplicarTabPeriodo('semana',this)" style="padding:6px 12px;font-size:11px;">Esta semana</button>
+              <button class="search-tab" id="tabMes" onclick="aplicarTabPeriodo('mes',this)" style="padding:6px 12px;font-size:11px;">Este mes</button>
+            </div>
+            <button class="refresh-btn" onclick="loadDashboard(); resetAndLoadEquipos(); setTimeout(fetchAndRenderCharts,1200);">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              Actualizar
+            </button>
+          </div>
+        </header>
+
+        <!-- ══════════════════════════════
+             DASHBOARD
+        ══════════════════════════════ -->
+        <section id="dashboard" class="section active-section">
+
+          <!-- Selector de fechas -->
+          <div class="range-toolbar" id="dashboardRangeToolbar">
+            <div class="range-inputs-row">
+              <div id="dash-btn-desde" class="range-input-box active">
+                <div class="range-label">Desde</div>
+                <input type="text" id="dash-input-desde" class="range-date-input" placeholder="DD/MM/AAAA" maxlength="10">
+                <span class="calendar-icon">📅</span>
+              </div>
+              <div id="dash-btn-hasta" class="range-input-box">
+                <div class="range-label">Hasta</div>
+                <input type="text" id="dash-input-hasta" class="range-date-input" placeholder="DD/MM/AAAA" maxlength="10">
+                <span class="calendar-icon">📅</span>
+              </div>
+              <button id="dash-btn-aplicar" class="range-action-btn btn-range-apply" disabled>Aplicar fechas</button>
+              <button id="dash-btn-limpiar" class="range-action-btn btn-range-clear">Limpiar</button>
+            </div>
+            <div id="dashRangePickerPopover" class="range-picker-popover hidden">
+              <div class="calendar-range-wrapper">
+                <div class="calendar-range">
+                  <div class="calendar-range-header">
+                    <div class="nav-btn" onclick="dashCambiarMes(-1)">‹</div>
+                    <div id="dash-month-left-name" class="month-title"></div>
+                    <div></div>
+                  </div>
+                  <div class="days-grid" id="dash-grid-left"></div>
+                </div>
+                <div class="calendar-range">
+                  <div class="calendar-range-header">
+                    <div></div>
+                    <div id="dash-month-right-name" class="month-title"></div>
+                    <div class="nav-btn nav-btn-next" onclick="dashCambiarMes(1)">›</div>
+                  </div>
+                  <div class="days-grid" id="dash-grid-right"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="dashActiveFilters" class="active-filters" style="margin-bottom:12px;"></div>
+
+          <!-- Cards -->
+          <div class="cards" id="summaryCards"></div>
+         <div class="panel" id="tiemposReparacionPanel" style="margin-bottom:12px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;">
+              <h3 style="margin-bottom:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                TIEMPOS DE ATENCIÓN
+              </h3>
+
+              <div class="search-mode-tabs" id="kpiHorasSegmentTabs" style="width:auto;">
+                <button class="search-tab active" data-segmento="global" onclick="setKpiHorasSegmento('global', this)">Global</button>
+                <button class="search-tab" data-segmento="clientes" onclick="setKpiHorasSegmento('clientes', this)">Clientes</button>
+                <button class="search-tab" data-segmento="eden" onclick="setKpiHorasSegmento('eden', this)">Eden Agua</button>
+              </div>
+            </div>
+
+            <div id="tiemposReparacionBody"></div>
+          </div>
+          <!-- Equipos finalizados por mes -->
+          <div class="panel" id="reparadosMesPanel" style="margin-bottom:12px;">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Equipos finalizados por taller según mes de ingreso
+            </h3>
+            <div id="reparadosMesBody" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;"></div>
+          </div>
+
+          <!-- Gráficos -->
+          <div id="chartsSection" style="width:100%;max-width:100%;overflow:hidden;">
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-bottom:12px;">
+              <div class="panel chart-panel">
+                <h3>
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
+                  Status de salida de equipos
+                </h3>
+                <div style="position:relative;height:260px;">
+                  <div id="chartDonaTotal" class="dona-total-badge"></div>
+                  <div id="chartDonaWrap" style="height:260px;display:flex;align-items:center;justify-content:center;">
+                    <canvas id="chartDona"></canvas>
+                  </div>
+                  <div id="chartDonaEmpty" class="empty-state" style="display:none;">Sin datos para el período</div>
+                </div>
+              </div>
+              <div class="panel chart-panel">
+                <h3>
+                  <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                  Equipos ingresados por modelo
+                </h3>
+                <div id="modelList"></div>
+                <div id="chartModelosEmpty" class="empty-state" style="display:none;">Sin datos para el período</div>
+              </div>
+            </div>
+                        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-bottom:12px;">
+              <div class="panel chart-panel">
+                <h3>
+                  <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  Motivo de ingreso al taller
+                </h3>
+                <div id="motivoList"></div>
+                <div id="chartMotivosEmpty" class="empty-state" style="display:none;">Sin datos para el período</div>
+              </div>
+              <div class="panel chart-panel" style="margin-bottom:0;">
+                <h3>
+                  <svg viewBox="0 0 24 24"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  Fallas más frecuentes del período
+                </h3>
+                <div id="chartFallasScroll" style="position:relative;">
+                  <div id="chartFallasContainer" style="position:relative;width:100%;">
+                  </div>
+                </div>
+                <div id="chartFallasEmpty" class="empty-state" style="display:none;">Sin datos para el período</div>
+              </div>
+            </div>
+                        <!-- ── Ingresos vs Salidas (Inventario y Cliente) ── -->
+            <div class="panel chart-panel" style="margin-bottom:12px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+                <h3 style="margin-bottom:0;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                  </svg>
+                  Ingresos vs. Salidas por mes (Inventario y Cliente)
+                </h3>
+                <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+                  <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#185fa5;">
+                    <span style="width:11px;height:11px;border-radius:2px;background:#185fa5;display:inline-block;"></span>Inventario · del mes
+                  </span>
+                  <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#85b7eb;">
+                    <span style="width:11px;height:11px;border-radius:2px;background:#85b7eb;display:inline-block;"></span>Inventario · rezagado
+                  </span>
+                  <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#c0392b;">
+                    <span style="width:11px;height:11px;border-radius:2px;background:#c0392b;display:inline-block;"></span>Cliente · del mes
+                  </span>
+                  <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#c0392b;">
+                    <span style="width:11px;height:11px;border-radius:2px;background:#f1948a;display:inline-block;"></span>Cliente · rezagado
+                  </span>
+                </div>
+              </div>
+              <div id="chartIngSalDetalleWrap" style="position:relative;height:320px;"></div>
+              <div id="chartIngSalDetalleEmpty" class="empty-state" style="display:none;">Sin datos para el período</div>
+            </div>
+
+            <!-- ── Total Ingresados vs Total Salidos ── -->
+            <div class="panel chart-panel" style="margin-bottom:12px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+                <h3 style="margin-bottom:0;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+                  </svg>
+                  Total ingresados vs. total salidos por mes
+                </h3>
+                <div style="display:flex;gap:14px;align-items:center;">
+                  <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#1e40af;">
+                    <span style="width:12px;height:12px;border-radius:3px;background:#1e40af;display:inline-block;"></span>Total Ingresos
+                  </span>
+                  <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#dc2626;">
+                    <span style="width:12px;height:12px;border-radius:3px;background:#dc2626;display:inline-block;"></span>Total Salidas
+                  </span>
+                </div>
+              </div>
+              <div id="chartIngSalTotalWrap" style="position:relative;height:320px;"></div>
+              <div id="chartIngSalTotalEmpty" class="empty-state" style="display:none;">Sin datos para el período</div>
+            </div>
+
+            <!-- ── Clientes vs Eden Agua por mes ── -->
+            <div class="panel chart-panel" style="margin-bottom:12px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+                <h3 style="margin-bottom:0;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/>
+                  </svg>
+                  Clientes vs Eden Agua vs Equipos de Baja
+                </h3>
+                <div style="display:flex;gap:14px;align-items:center;">
+                    <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#c0392b;">
+                    <span style="width:12px;height:12px;border-radius:3px;background:#c0392b;display:inline-block;"></span>Clientes
+                  </span>
+                  <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#2a78d6;">
+                    <span style="width:12px;height:12px;border-radius:3px;background:#2a78d6;display:inline-block;"></span>Eden Agua
+                  </span>
+                  <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#7a7a74;">
+                    <span style="width:12px;height:12px;border-radius:3px;background:#7a7a74;display:inline-block;"></span>De Baja
+                  </span>
+                  <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#94a3b8;">
+                    <span style="width:12px;height:12px;border-radius:3px;background:#cfcfca;display:inline-block;"></span>Tono claro = rezagado
+                  </span>
+                </div>
+              </div>
+              <div id="chartClienteVsEdenWrap" style="position:relative;"></div>
+              <div id="chartClienteVsEdenEmpty" class="empty-state" style="display:none;">Sin datos para el período</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════
+             EQUIPOS
+        ══════════════════════════════ -->
+        <section id="equipos" class="section">
+          <div class="panel">
+            <div class="range-toolbar">
+              <div class="range-inputs-row">
+                <div id="btn-desde" class="range-input-box active">
+                  <div class="range-label">Desde</div>
+                  <input type="text" id="input-desde" class="range-date-input" placeholder="DD/MM/AAAA" maxlength="10">
+                  <span class="calendar-icon">📅</span>
+                </div>
+                <div id="btn-hasta" class="range-input-box">
+                  <div class="range-label">Hasta</div>
+                  <input type="text" id="input-hasta" class="range-date-input" placeholder="DD/MM/AAAA" maxlength="10">
+                  <span class="calendar-icon">📅</span>
+                </div>
+                <button id="btn-accion-aplicar" class="range-action-btn btn-range-apply" disabled>Aplicar fechas</button>
+                <button id="btn-accion-limpiar" class="range-action-btn btn-range-clear">Limpiar fechas</button>
+              </div>
+              <div id="rangePickerPopover" class="range-picker-popover hidden">
+                <div class="calendar-range-wrapper">
+                  <div class="calendar-range">
+                    <div class="calendar-range-header">
+                      <div class="nav-btn" onclick="cambiarMes(-1)">‹</div>
+                      <div id="month-left-name" class="month-title"></div>
+                      <div></div>
+                    </div>
+                    <div class="days-grid" id="grid-left"></div>
+                  </div>
+                  <div class="calendar-range">
+                    <div class="calendar-range-header">
+                      <div></div>
+                      <div id="month-right-name" class="month-title"></div>
+                      <div class="nav-btn nav-btn-next" onclick="cambiarMes(1)">›</div>
+                    </div>
+                    <div class="days-grid" id="grid-right"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="toolbar">
+              <input type="text" id="searchInput" placeholder="Buscar por serie, cliente, modelo, falla o estado..." oninput="buscarEquiposDebounced()" onkeydown="if(event.key==='Enter'){ buscarEquipos(); }" style="flex:2;min-width:200px;">
+              <input type="text" id="searchFicha" placeholder="N° de Ficha..." oninput="buscarEquiposDebounced()" onkeydown="if(event.key==='Enter'){ buscarEquipos(); }" style="flex:0.5;min-width:120px;border-color:var(--text-main);">
+              <button type="button" class="filter-btn" onclick="abrirFiltros()">Filtros</button>
+              <button onclick="buscarEquipos()">Buscar</button>
+              <button type="button" id="sacAlertaBtn" onclick="abrirSACModal()"
+                style="display:flex;align-items:center;gap:7px;padding:8px 14px;background:var(--text-main);color:#fff;border:none;border-radius:var(--radius-md);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;flex-shrink:0;margin-left:4px;">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+                Alertas SAC
+                <span id="sacAlertaBadge" style="display:none;background:#ef4444;color:#fff;border-radius:999px;font-size:10px;font-weight:800;padding:1px 7px;font-family:'DM Mono',monospace;line-height:1.5;">0</span>
+              </button>
+            </div>
+            <div id="activeFilters" class="active-filters"></div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                  <th>Ticket</th><th>Fecha</th><th>Serie</th><th>Cliente</th><th>Modelo</th>
+                  <th>Color</th><th>Estado</th><th>Falla</th><th>Fecha Salida</th>
+                  <th>Ficha Ing.</th><th>Ficha Sal.</th><th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="equiposBody"></tbody>
+              </table>
+            </div>
+            <div class="pagination-bar">
+              <button id="prevPageBtn" class="page-btn" onclick="goPrevPage()">← Anterior</button>
+              <span id="paginationInfo" class="pagination-info">0-0 / 0</span>
+              <button id="nextPageBtn" class="page-btn" onclick="goNextPage()">Siguiente →</button>
+            </div>
+          </div>
+        </section>
+        <!-- ══════════════════════════════
+     KPI TÉCNICOS
+══════════════════════════════ -->
+<section id="kpiTecnicos" class="section">
+  <div class="panel">
+
+    <!-- Toolbar de fechas estilo Dashboard -->
+          <div style="display:flex;gap:10px;align-items:end;margin-bottom:14px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:200px;">
+              <label style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;display:block;margin-bottom:4px;">Desde</label>
+              <div style="position:relative;">
+                <input type="date" id="kpiTecDesde"
+                  style="width:100%;padding:10px 14px;border:0.5px solid var(--border-med);border-radius:var(--radius-md);font-size:13px;font-family:'DM Mono',monospace;background:#fff;outline:none;color:var(--text-main);">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round"
+                  style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+              </div>
+            </div>
+            <div style="flex:1;min-width:200px;">
+              <label style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;display:block;margin-bottom:4px;">Hasta</label>
+              <div style="position:relative;">
+                <input type="date" id="kpiTecHasta"
+                  style="width:100%;padding:10px 14px;border:0.5px solid var(--border-med);border-radius:var(--radius-md);font-size:13px;font-family:'DM Mono',monospace;background:#fff;outline:none;color:var(--text-main);">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round"
+                  style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+              </div>
+            </div>
+            <button onclick="kpiTecCargar()"
+              style="padding:10px 20px;background:var(--text-main);color:#fff;border:none;border-radius:var(--radius-md);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;height:38px;">
+              Aplicar fechas
+            </button>
+            <button onclick="kpiTecLimpiarFechas()"
+              style="padding:10px 20px;background:transparent;color:var(--text-muted);border:0.5px solid var(--border-soft);border-radius:var(--radius-md);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;height:38px;">
+              Limpiar
+            </button>
+
+            <div style="margin-left:auto;display:flex;background:var(--bg-soft);border-radius:var(--radius-md);padding:3px;border:0.5px solid var(--border-soft);gap:2px;height:38px;" id="kpiTecSegTabs">
+              <button class="search-tab active" onclick="kpiTecSetSegmento('global',this)" style="padding:5px 14px;font-size:11px;">Global</button>
+              <button class="search-tab" onclick="kpiTecSetSegmento('clientes',this)" style="padding:5px 14px;font-size:11px;">Clientes</button>
+              <button class="search-tab" onclick="kpiTecSetSegmento('eden',this)" style="padding:5px 14px;font-size:11px;">Eden Agua</button>
+            </div>
+          </div>
+
+          <!-- Chips de fecha activa -->
+          <div id="kpiTecChips" style="display:flex;gap:6px;margin-bottom:14px;"></div>
+
+    <!-- Cards resumen -->
+    <div id="kpiTecResumen" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:14px;"></div>
+
+    <!-- Vista general -->
+    <div id="kpiTecGeneral" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin-bottom:14px;">
+      <div class="panel chart-panel" style="margin-bottom:0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <h3 style="margin:0;font-size:12px;">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px;vertical-align:-2px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Equipos reparados por técnico
+          </h3>
+          <span style="font-size:10px;color:var(--text-muted);">Clic para ver detalle →</span>
+        </div>
+        <div id="kpiTecTabla"></div>
+      </div>
+      <div class="panel chart-panel" style="margin-bottom:0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <h3 style="margin:0;font-size:12px;">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px;vertical-align:-2px;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Tendencia mensual de reparaciones
+          </h3>
+        </div>
+        <div id="kpiTecLeyenda" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px;"></div>
+        <div style="position:relative;height:220px;">
+          <canvas id="kpiTecChart" role="img" aria-label="Tendencia mensual de reparaciones por técnico"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reincidencia -->
+    <div id="kpiTecReinWrapper">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      <span style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.7px;">Reincidencia por técnico — mismo cliente · mismo equipo · &lt; 30 días desde salida</span>
+    </div>
+    <div id="kpiTecReincidencia" class="panel" style="margin-bottom:14px;"></div>
+    </div>
+    <!-- Detalle técnico (oculto por defecto) -->
+    <div id="kpiTecDetalle" style="display:none;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <button onclick="kpiTecCerrarDetalle()"
+          style="display:flex;align-items:center;gap:5px;padding:6px 12px;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);background:var(--bg-soft);cursor:pointer;font-size:12px;font-family:inherit;color:var(--text-muted);">
+          ← Volver
+        </button>
+        <div id="kpiTecDetalleHeader" style="display:flex;align-items:center;gap:10px;flex:1;"></div>
+      </div>
+      <div id="kpiTecDetalleStats" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:12px;"></div>
+      <div style="border:0.5px solid var(--border-soft);border-radius:8px;overflow:hidden;">
+        <table style="width:100%;border-collapse:collapse;font-size:11px;">
+          <thead style="position:sticky;top:0;background:#fff;box-shadow:0 1px 0 var(--border-soft);">
+          <tr>
+            <th style="padding:8px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">N° Serie</th>
+            <th style="padding:8px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Modelo</th>
+            <th style="padding:8px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;min-width:160px;">Cliente</th>
+            <th style="padding:8px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">F. Ingreso</th>
+            <th style="padding:8px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">F. Salida</th>
+            <th style="padding:8px 10px;text-align:center;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Días</th>
+            <th style="padding:8px 10px;text-align:center;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Horas</th>
+            <th style="padding:8px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Falla / Motivo</th>
+            <th style="padding:8px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Destino</th>
+          </tr>
+        </thead>  
+          <tbody id="kpiTecDetalleBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+                  <!-- ══════════════════════════════
+              REPUESTOS CLIENTES
+          ══════════════════════════════ -->
+          <section id="repuestos" class="section">
+            <div class="panel">
+
+                        <!-- Toolbar -->
+                      <!-- Fila 1: búsqueda + selects -->
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+            <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:200px;padding:0 12px;
+              border:0.5px solid var(--border-med);border-radius:var(--radius-md);background:#fff;">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--text-muted)" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+              <input type="text" id="repSearchInput" placeholder="Buscar producto, cliente, OS..."
+                style="border:none;outline:none;font-size:12px;padding:9px 0;font-family:inherit;background:transparent;width:100%;"
+                oninput="repFiltrarDebounced()">
+            </div>
+
+            <select id="repFiltroEquipo" onchange="repFiltrar()"
+              style="padding:8px 10px;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);
+              font-size:12px;font-family:inherit;color:var(--text-main);background:#fff;outline:none;cursor:pointer;">
+              <option value="">Todos los equipos</option>
+            </select>
+
+            <select id="repFiltroTipo" onchange="repFiltrar()"
+              style="padding:8px 10px;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);
+              font-size:12px;font-family:inherit;color:var(--text-main);background:#fff;outline:none;cursor:pointer;">
+              <option value="">Todos los tipos</option>
+            </select>
+
+            <select id="repFiltroEstOs" onchange="repFiltrar()"
+              style="padding:8px 10px;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);
+              font-size:12px;font-family:inherit;color:var(--text-main);background:#fff;outline:none;cursor:pointer;">
+              <option value="">Estado ODOO</option>
+            </select>
+
+            <select id="repFiltroEstSr" onchange="repFiltrar()"
+              style="padding:8px 10px;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);
+              font-size:12px;font-family:inherit;color:var(--text-main);background:#fff;outline:none;cursor:pointer;">
+              <option value="">Estado SR</option>
+            </select>
+          </div>
+
+          <!-- Fila 2: fechas + exportar -->
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+            <div style="display:flex;align-items:center;gap:0;border:0.5px solid var(--border-soft);
+              border-radius:var(--radius-md);overflow:hidden;background:#fff;">
+              <div style="padding:4px 10px;border-right:0.5px solid var(--border-soft);">
+                <div style="font-size:8px;font-weight:700;color:var(--text-muted);text-transform:uppercase;
+                  letter-spacing:.6px;margin-bottom:2px;">Desde</div>
+                <input type="text" id="repDesde" placeholder="DD/MM/AAAA" maxlength="10"
+                  oninput="repFormatFecha(this)" onchange="repFiltrar()"
+                  style="border:none;outline:none;font-size:11px;font-family:'DM Mono',monospace;
+                  width:90px;background:transparent;color:var(--text-main);">
+              </div>
+              <div style="padding:4px 10px;">
+                <div style="font-size:8px;font-weight:700;color:var(--text-muted);text-transform:uppercase;
+                  letter-spacing:.6px;margin-bottom:2px;">Hasta</div>
+                <input type="text" id="repHasta" placeholder="DD/MM/AAAA" maxlength="10"
+                  oninput="repFormatFecha(this)" onchange="repFiltrar()"
+                  style="border:none;outline:none;font-size:11px;font-family:'DM Mono',monospace;
+                  width:90px;background:transparent;color:var(--text-main);">
+              </div>
+              <button onclick="repLimpiarFechas()"
+                style="padding:0 10px;height:100%;border:none;border-left:0.5px solid var(--border-soft);
+                background:transparent;cursor:pointer;color:var(--text-muted);font-size:14px;"
+                title="Limpiar fechas">✕</button>
+            </div>
+
+            <span id="repFechaActiva" style="font-size:11px;color:var(--text-muted);"></span>
+
+            <div style="margin-left:auto;display:flex;gap:6px;">
+              <button onclick="repExportarCSV()"
+                style="display:flex;align-items:center;gap:6px;padding:8px 14px;
+                background:var(--text-main);color:#fff;border:none;border-radius:var(--radius-md);
+                font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="12" y1="18" x2="12" y2="12"/>
+                  <polyline points="9 15 12 18 15 15"/>
+                </svg>
+                Exportar Excel
+              </button>
+            </div>
+          </div>
+
+              <!-- Cards resumen -->
+              <div id="repSummary" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;"></div>
+
+              <!-- Tabla con scroll infinito -->
+              <div id="repTableWrap" style="overflow-y:auto;max-height:calc(100vh - 280px);border-radius:8px;border:0.5px solid var(--border-soft);"
+                onscroll="repOnScroll(this)">
+                <table style="width:100%;border-collapse:collapse;font-size:11px;">
+                  <thead style="position:sticky;top:0;z-index:1;background:#fff;box-shadow:0 1px 0 var(--border-soft);">
+                    <tr>
+                      <th style="padding:9px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;white-space:nowrap;">Equipo</th>
+                      <th style="padding:9px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;min-width:200px;">Producto</th>
+                      <th style="padding:9px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;white-space:nowrap;">Fecha</th>
+                      <th style="padding:9px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;min-width:160px;">Cliente</th>
+                      <th style="padding:9px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;white-space:nowrap;">Tipo servicio</th>
+                      <th style="padding:9px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;white-space:nowrap;">Tipo entrega</th>
+                      <th style="padding:9px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;white-space:nowrap;">OS</th>
+                      <th style="padding:9px 10px;text-align:center;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Cant.</th>
+                      <th style="padding:9px 10px;text-align:right;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Precio</th>
+                      <th style="padding:9px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;white-space:nowrap;">Est. ODOO</th>
+                      <th style="padding:9px 10px;text-align:left;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;white-space:nowrap;">Est. SR</th>
+                    </tr>
+                  </thead>
+                  <tbody id="repTableBody">
+                    <tr><td colspan="11" style="padding:48px;text-align:center;color:var(--text-muted);">Cargando...</td></tr>
+                  </tbody>
+                </table>
+                <div id="repLoadingMore" style="display:none;padding:14px;text-align:center;font-size:12px;color:var(--text-muted);">
+                  Cargando más...
+                </div>
+              </div>
+
+              <div id="repContador" style="margin-top:8px;font-size:11px;color:var(--text-muted);text-align:right;"></div>
+            </div>
+          </section>
+        <!-- ══════════════════════════════
+             NUEVO REGISTRO
+        ══════════════════════════════ -->
+        <section id="nuevo" class="section">
+          <div class="panel" style="max-width:800px;margin:0 auto;border:0.5px solid var(--border-soft);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+              <h3 style="margin:0;">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Registrar nuevo Formulario
+              </h3>
+              <div class="tipo-toggle-pro" id="nuevoTipoToggle">
+                <button class="tipo-btn active" id="tipoBtnIngreso" onclick="setNuevoTipo('ingreso')">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 0 1 4-4h12"/></svg>
+                  Registrar INGRESO
+                </button>
+                <button class="tipo-btn" id="tipoBtnSalida" onclick="setNuevoTipo('salida')">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>
+                  Registrar SALIDA
+                </button>
+              </div>
+            </div>
+            <div id="nuevoFormIngreso" class="filters-grid" style="padding:0;">
+              <div class="filter-group"><label>Serie del producto</label><input type="text" id="nI_serie"></div>
+              <div class="filter-group"><label>Fecha de llegada al taller</label><input type="text" id="nI_fecha" placeholder="DD/MM/AAAA"></div>
+              <div class="filter-group filter-group-full"><label>Cliente o Eden Agua</label><input type="text" id="nI_cliente"></div>
+              <div class="filter-group filter-group-full"><label>Detalle del motivo a taller</label><textarea id="nI_motivo" rows="3"></textarea></div>
+              <div class="filter-group"><label>N° ficha de ingreso</label><input type="text" id="nI_ficha"></div>
+              <div class="filter-group"><label>Hora de llegada</label><input type="text" id="nI_hora"></div>
+              <div class="filter-group"><label>Técnico que entrega</label><input type="text" id="nI_tecnico"></div>
+              <div class="filter-group"><label>Modelo</label><input type="text" id="nI_modelo"></div>
+              <div class="filter-group"><label>Color</label><input type="text" id="nI_color"></div>
+              <div class="filter-group"><label>Bandeja</label><input type="text" id="nI_bandeja"></div>
+            </div>
+            <div id="nuevoFormSalida" class="filters-grid" style="padding:0;display:none;">
+              <div class="filter-group"><label>Serie del producto</label><input type="text" id="nS_serie"></div>
+              <div class="filter-group"><label>Fecha de salida del taller</label><input type="text" id="nS_fecha" placeholder="DD/MM/AAAA"></div>
+              <div class="filter-group"><label>Técnico responsable de reparación</label><input type="text" id="nS_tecnico"></div>
+              <div class="filter-group"><label>N° ficha de salida</label><input type="text" id="nS_ficha"></div>
+              <div class="filter-group filter-group-full"><label>Procedimiento de reparación</label><textarea id="nS_procedimiento" rows="4"></textarea></div>
+              <div class="filter-group filter-group-full"><label>Repuestos utilizados</label><textarea id="nS_repuestos" rows="2"></textarea></div>
+              <div class="filter-group"><label>Consumibles</label><input type="text" id="nS_consumibles"></div>
+              <div class="filter-group"><label>Hora de Inicio de Reparación</label><input type="text" id="nS_hora_inicio"></div>
+              <div class="filter-group"><label>Hora de término de reparación</label><input type="text" id="nS_hora"></div>
+              <div class="filter-group"><label>Cliente o Eden Agua</label><input type="text" id="nS_cliente"></div>
+            </div>
+            <div class="filter-group filter-group-full" style="margin-top:14px;padding:0;">
+              <label>Subir Foto del Equipo al Drive (Opcional)</label>
+              <div class="file-input-wrapper">
+                <div id="fileLabelText" class="file-input-label">📁 Haz clic aquí para adjuntar una imagen</div>
+                <input type="file" id="n_foto" accept="image/*" onchange="document.getElementById('fileLabelText').innerText='📸 '+(this.files[0]?this.files[0].name:'Haz clic aquí para adjuntar una imagen');">
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:22px;">
+              <button class="clear-btn" onclick="limpiarNuevoFormulario()">Limpiar todo</button>
+              <button id="btnGuardarNuevo" onclick="guardarNuevoRegistro()" style="background:var(--text-main);color:#fff;padding:10px 24px;font-size:13px;border-radius:var(--radius-md);border:none;cursor:pointer;font-weight:600;">Registrar en Google Sheets</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════
+             EDITAR REGISTROS
+        ══════════════════════════════ -->
+        <section id="edicion" class="section">
+          <div class="panel">
+            <div class="search-toolbar-pro" style="margin-bottom:20px;">
+              <div class="search-mode-tabs" id="searchModeTabs">
+                <button class="search-tab active" data-mode="ambas_fichas" onclick="setSearchMode('ambas_fichas',this)">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                  Ambas Fichas
+                </button>
+                <button class="search-tab" data-mode="ficha_ingreso" onclick="setSearchMode('ficha_ingreso',this)">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 0 1 4-4h12"/></svg>
+                  Ficha Ingreso
+                </button>
+                <button class="search-tab" data-mode="ficha_salida" onclick="setSearchMode('ficha_salida',this)">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>
+                  Ficha Salida
+                </button>
+                <button class="search-tab" data-mode="serie" onclick="setSearchMode('serie',this)">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                  N° Serie
+                </button>
+              </div>
+              <div class="search-input-row">
+                <div class="search-input-wrap">
+                  <svg class="search-icon-pro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                  <input type="text" id="editSearchInput" placeholder="Ingrese N° de Ficha de Ingreso o Salida..." onkeydown="if(event.key==='Enter') buscarParaEditar();">
+                </div>
+                <button class="btn-buscar-pro" onclick="buscarParaEditar()">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                  Buscar equipo
+                </button>
+                <button class="btn-limpiar-pro" onclick="limpiarEdicion()">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+                  Limpiar
+                </button>
+              </div>
+            </div>
+            <div id="editInfoStrip" style="display:none;" class="edit-info-strip"></div>
+            <div id="editNoResultado" style="display:none;" class="empty-state">No se encontró ningún equipo con ese criterio.</div>
+            <div id="editFormGrid" style="display:none;">
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-bottom:16px;">
+                <div class="panel chart-panel" style="border:1px solid var(--blue-main);padding:20px;">
+                  <h3 style="color:var(--blue-main);">
+                    <svg viewBox="0 0 24 24"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 0 1 4-4h12"/></svg>
+                    Formulario Ingreso
+                  </h3>
+                  <div class="filters-grid" style="padding:0;margin-top:0;">
+                    <div class="filter-group-full" style="display:flex;gap:14px;flex-wrap:wrap;">
+                      <div class="filter-group" style="flex:0 0 90px;"><label>ID Ticket</label><input type="text" id="eI_ticket" style="border-color:var(--text-main);font-weight:600;text-align:center;"></div>
+                      <div class="filter-group" style="flex:1;min-width:160px;"><label>Serie del producto</label><input type="text" id="eI_serie"></div>
+                      <div class="filter-group" style="flex:1;min-width:140px;"><label>Fecha de llegada</label><input type="text" id="eI_fecha" placeholder="DD/MM/AAAA"></div>
+                    </div>
+                    <div class="filter-group filter-group-full"><label>Cliente o Eden Agua</label><input type="text" id="eI_cliente"></div>
+                    <div class="filter-group filter-group-full"><label>Detalle del motivo a taller</label><textarea id="eI_motivo" rows="3"></textarea></div>
+                    <div class="filter-group"><label>N° ficha de ingreso</label><input type="text" id="eI_ficha"></div>
+                    <div class="filter-group"><label>Hora de llegada</label><input type="text" id="eI_hora"></div>
+                    <div class="filter-group"><label>Técnico que entrega</label><input type="text" id="eI_tecnico"></div>
+                    <div class="filter-group"><label>Modelo</label><input type="text" id="eI_modelo"></div>
+                    <div class="filter-group"><label>Color</label><input type="text" id="eI_color"></div>
+                    <div class="filter-group"><label>Bandeja</label><input type="text" id="eI_bandeja"></div>
+                    <div class="filter-group filter-group-full">
+                      <label>Estado del equipo</label>
+                      <select id="eI_estado" onchange="actualizarColorSelectEdicion()" style="font-weight:600;border:0.5px solid var(--border-soft);height:42px;border-radius:var(--radius-md);padding:0 12px;outline:none;cursor:pointer;font-family:inherit;font-size:12px;">
+                        <option value="En lista de espera para reparación">En lista de espera para reparación</option>
+                        <option value="Operativo pasa a almacén">Operativo pasa a almacén</option>
+                        <option value="Listo para devolver a cliente">Listo para devolver a cliente</option>
+                        <option value="Sin estado">Sin estado</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel chart-panel" style="border:1px solid var(--green-main);padding:20px;">
+                  <h3 style="color:var(--green-main);">
+                    <svg viewBox="0 0 24 24"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>
+                    Formulario Salida
+                  </h3>
+                  <div class="filters-grid" style="padding:0;margin-top:0;">
+                    <div class="filter-group"><label>Fecha de salida del taller</label><input type="text" id="eS_fecha" placeholder="DD/MM/AAAA"></div>
+                    <div class="filter-group"><label>Técnico responsable de reparación</label><input type="text" id="eS_tecnico"></div>
+                    <div class="filter-group"><label>N° ficha de salida</label><input type="text" id="eS_ficha"></div>
+                    <div class="filter-group"><label>Hora de término de reparación</label><input type="text" id="eS_hora"></div>
+                    <div class="filter-group filter-group-full"><label>Procedimiento de reparación</label><textarea id="eS_procedimiento" rows="5"></textarea></div>
+                    <div class="filter-group filter-group-full"><label>Repuestos utilizados</label><textarea id="eS_repuestos" rows="3"></textarea></div>
+                    <div class="filter-group"><label>Consumibles</label><input type="text" id="eS_consumibles"></div>
+                    <div class="filter-group"><label>Hora de Inicio de Reparación</label><input type="text" id="eS_hora_inicio"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;justify-content:flex-end;">
+                <button class="clear-btn" onclick="limpiarEdicion()">Cancelar</button>
+                <button id="btnGuardarEdicion" onclick="guardarEdicionDirecta()" style="background:var(--text-main);color:#fff;padding:10px 24px;font-size:13px;border-radius:var(--radius-md);border:none;cursor:pointer;font-weight:600;">Guardar en Google Sheets</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════
+             CONTROL DE CALIDAD
+        ══════════════════════════════ -->
+        <section id="calidad" class="section">
+          <div class="panel">
+            <div class="search-toolbar-pro" style="margin-bottom:20px;">
+              <div class="search-mode-tabs" id="ccSearchModeTabs">
+                <button class="search-tab active" data-mode="ambas_fichas" onclick="ccSetSearchMode('ambas_fichas',this)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Ambas Fichas</button>
+                <button class="search-tab" data-mode="ficha_ingreso" onclick="ccSetSearchMode('ficha_ingreso',this)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 0 1 4-4h12"/></svg>Ficha Ingreso</button>
+                <button class="search-tab" data-mode="ficha_salida" onclick="ccSetSearchMode('ficha_salida',this)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>Ficha Salida</button>
+                <button class="search-tab" data-mode="serie" onclick="ccSetSearchMode('serie',this)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>N° Serie</button>
+              </div>
+              <div class="search-input-row">
+                <div class="search-input-wrap"><svg class="search-icon-pro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="ccSearchInput" placeholder="Ingrese N° de Ficha de Ingreso o Salida..." onkeydown="if(event.key==='Enter') ccBuscar();"></div>
+                <button class="btn-buscar-pro" onclick="ccBuscar()"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Buscar equipo</button>
+                <button class="btn-limpiar-pro" onclick="ccLimpiar()"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>Limpiar</button>
+              </div>
+            </div>
+            <div id="ccInfoStrip" style="display:none;" class="edit-info-strip"></div>
+            <div id="ccNoResultado" style="display:none;" class="empty-state">No se encontró ningún equipo con ese criterio.</div>
+            <div id="ccFormGrid" style="display:none;">
+              <div style="background:var(--bg-soft);border-radius:var(--radius-md);padding:14px 18px;margin-bottom:18px;border:0.5px solid var(--border-soft);">
+                <div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;">Datos del equipo</div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;">
+                  <div><div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">Serie</div><div id="cc_serie_display" style="font-size:13px;font-weight:700;color:var(--text-main);margin-top:3px;">—</div></div>
+                  <div><div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">Modelo</div><div id="cc_modelo_display" style="font-size:13px;color:var(--text-main);margin-top:3px;">—</div></div>
+                  <div><div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">Cliente</div><div id="cc_cliente_display" style="font-size:13px;color:var(--text-main);margin-top:3px;">—</div></div>
+                  <div><div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">Estado</div><div id="cc_estado_display" style="margin-top:3px;"></div></div>
+                  <div><div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">Ficha Ingreso</div><div id="cc_fichaIng_display" style="font-size:13px;color:var(--text-main);margin-top:3px;font-family:'DM Mono',monospace;">—</div></div>
+                  <div><div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">Ficha Salida</div><div id="cc_fichaSal_display" style="font-size:13px;color:var(--text-main);margin-top:3px;font-family:'DM Mono',monospace;">—</div></div>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 2fr;gap:16px;margin-bottom:16px;">
+                <div class="panel" style="border:1px solid var(--blue-main);padding:20px;">
+                  <h3 style="color:var(--blue-main);margin-bottom:14px;"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>Clasificación</h3>
+                  <div style="display:flex;flex-direction:column;gap:7px;" id="cc_tipo_options"></div>
+                </div>
+                <div class="panel" style="border:1px solid var(--green-main);padding:20px;">
+                  <h3 style="color:var(--green-main);margin-bottom:14px;"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Estado del Producto</h3>
+                  <div style="display:flex;flex-direction:column;gap:7px;" id="cc_estado_prod_options"></div>
+                </div>
+                <div class="panel" style="padding:20px;">
+                  <h3 style="margin-bottom:14px;"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Comentario / Observaciones</h3>
+                  <textarea id="cc_comentario" rows="7" style="width:100%;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);padding:10px 12px;font-size:12px;font-family:inherit;color:var(--text-main);resize:vertical;transition:border-color .15s;" onfocus="this.style.borderColor='var(--text-main)'" onblur="this.style.borderColor='var(--border-soft)'" placeholder="Ingrese observaciones, notas de calidad, condición del equipo..."></textarea>
+                </div>
+              </div>
+              <div class="panel" style="margin-bottom:16px;padding:20px;">
+                <h3 style="margin-bottom:14px;"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Archivos adjuntos (imágenes, videos, documentos)</h3>
+                <div id="cc_dropzone" style="border:1.5px dashed var(--border-med);border-radius:var(--radius-md);padding:20px;text-align:center;background:var(--bg-soft);cursor:pointer;position:relative;transition:background .15s;" onclick="document.getElementById('cc_fileInput').click()" ondragover="ccDragOver(event)" ondrop="ccDrop(event)" ondragleave="ccDragLeave(event)">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--text-muted)" stroke-width="1.5" style="margin-bottom:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <div style="color:var(--text-main);font-weight:600;font-size:13px;margin-bottom:3px;">Haz clic o arrastra archivos aquí</div>
+                  <div style="color:var(--text-muted);font-size:11px;">Imágenes, Videos, PDF — máx. 20 MB por archivo</div>
+                  <input type="file" id="cc_fileInput" multiple accept="image/*,video/*,.pdf,.mp4,.mov,.avi" style="display:none;" onchange="ccArchivoSeleccionado(this)">
+                </div>
+                <div id="cc_filesPreview" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;"></div>
+                <div id="cc_filesGuardados" style="margin-top:14px;"></div>
+              </div>
+              <div id="cc_historial" style="display:none;" class="panel" style="margin-bottom:16px;padding:20px;">
+                <h3 style="margin-bottom:12px;"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Historial CC de esta serie</h3>
+                <div id="cc_historial_body"></div>
+              </div>
+              <div style="display:flex;gap:10px;justify-content:flex-end;padding-top:8px;border-top:0.5px solid var(--border-soft);">
+                <button class="clear-btn" onclick="ccLimpiar()">Cancelar</button>
+                <button id="btnGuardarCC" onclick="ccGuardar()" style="background:var(--text-main);color:#fff;padding:10px 24px;font-size:13px;border-radius:var(--radius-md);border:none;cursor:pointer;font-weight:600;">Guardar en Google Sheets</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════
+             FICHAS
+        ══════════════════════════════ -->
+        <section id="fichas" class="section">
+          <div class="panel">
+            <div class="search-toolbar-pro" style="margin-bottom:20px;">
+              <div class="search-mode-tabs" id="fichasSearchModeTabs">
+                <button class="search-tab active" data-mode="ambas_fichas" onclick="fichasSetMode('ambas_fichas',this)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Ambas Fichas</button>
+                <button class="search-tab" data-mode="ficha_ingreso" onclick="fichasSetMode('ficha_ingreso',this)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 0 1 4-4h12"/></svg>Ficha Ingreso</button>
+                <button class="search-tab" data-mode="ficha_salida" onclick="fichasSetMode('ficha_salida',this)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>Ficha Salida</button>
+                <button class="search-tab" data-mode="serie" onclick="fichasSetMode('serie',this)"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>N° Serie</button>
+              </div>
+              <div class="search-input-row">
+                <div class="search-input-wrap"><svg class="search-icon-pro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="fichasSearchInput" placeholder="Ingrese N° de Ficha o Serie..." onkeydown="if(event.key==='Enter') fichasBuscar();"></div>
+                <button class="btn-buscar-pro" onclick="fichasBuscar()"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Buscar equipo</button>
+                <button class="btn-limpiar-pro" onclick="fichasLimpiar()"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>Limpiar</button>
+              </div>
+            </div>
+            <div id="fichasInfoStrip" style="display:none;" class="edit-info-strip"></div>
+            <div id="fichasNoResultado" style="display:none;" class="empty-state">No se encontró ningún equipo con ese criterio.</div>
+            <div id="fichasFormGrid" style="display:none;">
+              <div style="background:var(--bg-soft);border-radius:var(--radius-md);padding:14px 18px;margin-bottom:16px;border:0.5px solid var(--border-soft);">
+                <div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;">Datos del equipo</div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;">
+                  <div><div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">Serie</div><div id="fi_serie_display" style="font-size:13px;font-weight:700;color:var(--text-main);margin-top:3px;">—</div></div>
+                  <div><div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">Modelo</div><div id="fi_modelo_display" style="font-size:13px;color:var(--text-main);margin-top:3px;">—</div></div>
+                  <div><div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">Cliente</div><div id="fi_cliente_display" style="font-size:13px;color:var(--text-main);margin-top:3px;">—</div></div>
+                  <div><div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">Estado</div><div id="fi_estado_display" style="margin-top:3px;"></div></div>
+                  <div><div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">N° Ficha Ingreso</div><div id="fi_fichaIng_display" style="font-size:13px;color:var(--text-main);margin-top:3px;font-family:'DM Mono',monospace;font-weight:700;">—</div></div>
+                  <div><div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">N° Ficha Salida</div><div id="fi_fichaSal_display" style="font-size:13px;color:var(--text-main);margin-top:3px;font-family:'DM Mono',monospace;font-weight:700;">—</div></div>
+                </div>
+              </div>
+              <div id="fi_paneles_grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+                <div id="fi_panel_ingreso" class="panel" style="border:1px solid var(--blue-main);padding:20px;">
+                  <h3 style="color:var(--blue-main);margin-bottom:16px;"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 0 1 4-4h12"/></svg>Ficha de Ingreso</h3>
+                  <div id="fi_ingreso_preview" style="margin-bottom:14px;display:none;">
+                    <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px;">Ficha actual</div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--bg-soft);border-radius:var(--radius-md);border:0.5px solid var(--border-soft);">
+                      <div id="fi_ingreso_thumb" style="width:56px;height:56px;background:var(--border-soft);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;flex-shrink:0;" onclick="fichasVerImagen('ingreso')">🖼️</div>
+                      <div style="flex:1;min-width:0;">
+                        <div id="fi_ingreso_nombre" style="font-size:11px;color:var(--text-main);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></div>
+                        <div style="display:flex;gap:10px;margin-top:5px;"><a id="fi_ingreso_link" href="#" target="_blank" style="font-size:10px;color:var(--blue-main);font-weight:600;text-decoration:none;">Ver en Drive</a><span style="font-size:10px;color:var(--red-main);cursor:pointer;" onclick="fichasEliminar('ingreso')">🗑 Eliminar</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="fi_ingreso_dropzone" style="border:1.5px dashed var(--blue-main);border-radius:var(--radius-md);padding:18px;text-align:center;background:var(--blue-soft);cursor:pointer;transition:background .15s;" onclick="document.getElementById('fi_fileIngreso').click()" ondragover="fichasDragOver(event,'fi_ingreso_dropzone')" ondrop="fichasDrop(event,'ingreso')" ondragleave="fichasDragLeave('fi_ingreso_dropzone')">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--blue-main)" stroke-width="1.5" style="margin-bottom:5px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <div style="color:var(--blue-dark);font-weight:600;font-size:12px;margin-bottom:2px;">Subir ficha de ingreso</div>
+                    <div id="fi_ingreso_filename" style="color:var(--text-muted);font-size:10px;">Arrastra o haz clic — JPG, PNG, PDF</div>
+                    <input type="file" id="fi_fileIngreso" accept="image/*,.pdf" style="display:none;" onchange="fichasArchivoSeleccionado('ingreso',this)">
+                  </div>
+                  <div id="fi_ingreso_reemplazar_opt" style="display:none;margin-top:8px;padding:7px 10px;background:#fef3c7;border-radius:var(--radius-sm);border:0.5px solid #fcd34d;">
+                    <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:11px;font-weight:600;color:#92400e;"><input type="checkbox" id="fi_reemplazar_ingreso" checked style="accent-color:#d97706;">Reemplazar la ficha anterior</label>
+                  </div>
+                  <button id="fi_btnGuardarIngreso" onclick="fichasGuardar('ingreso')" style="width:100%;margin-top:12px;background:var(--blue-main);color:#fff;padding:10px;border:none;border-radius:var(--radius-md);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;" disabled>Guardar ficha de ingreso</button>
+                </div>
+                <div id="fi_panel_salida" class="panel" style="border:1px solid var(--green-main);padding:20px;">
+                  <h3 style="color:var(--green-main);margin-bottom:16px;"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>Ficha de Salida</h3>
+                  <div id="fi_salida_preview" style="margin-bottom:14px;display:none;">
+                    <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px;">Ficha actual</div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--bg-soft);border-radius:var(--radius-md);border:0.5px solid var(--border-soft);">
+                      <div id="fi_salida_thumb" style="width:56px;height:56px;background:var(--border-soft);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;flex-shrink:0;" onclick="fichasVerImagen('salida')">🖼️</div>
+                      <div style="flex:1;min-width:0;">
+                        <div id="fi_salida_nombre" style="font-size:11px;color:var(--text-main);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></div>
+                        <div style="display:flex;gap:10px;margin-top:5px;"><a id="fi_salida_link" href="#" target="_blank" style="font-size:10px;color:var(--green-main);font-weight:600;text-decoration:none;">Ver en Drive</a><span style="font-size:10px;color:var(--red-main);cursor:pointer;" onclick="fichasEliminar('salida')">🗑 Eliminar</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="fi_salida_dropzone" style="border:1.5px dashed var(--green-main);border-radius:var(--radius-md);padding:18px;text-align:center;background:#f0fdf4;cursor:pointer;transition:background .15s;" onclick="document.getElementById('fi_fileSalida').click()" ondragover="fichasDragOver(event,'fi_salida_dropzone')" ondrop="fichasDrop(event,'salida')" ondragleave="fichasDragLeave('fi_salida_dropzone')">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--green-main)" stroke-width="1.5" style="margin-bottom:5px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <div style="color:var(--green-hover);font-weight:600;font-size:12px;margin-bottom:2px;">Subir ficha de salida</div>
+                    <div id="fi_salida_filename" style="color:var(--text-muted);font-size:10px;">Arrastra o haz clic — JPG, PNG, PDF</div>
+                    <input type="file" id="fi_fileSalida" accept="image/*,.pdf" style="display:none;" onchange="fichasArchivoSeleccionado('salida',this)">
+                  </div>
+                  <div id="fi_salida_reemplazar_opt" style="display:none;margin-top:8px;padding:7px 10px;background:#f0fdf4;border-radius:var(--radius-sm);border:0.5px solid #bbf7d0;">
+                    <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:11px;font-weight:600;color:#15803d;"><input type="checkbox" id="fi_reemplazar_salida" checked style="accent-color:#16a34a;">Reemplazar la ficha anterior</label>
+                  </div>
+                  <button id="fi_btnGuardarSalida" onclick="fichasGuardar('salida')" style="width:100%;margin-top:12px;background:var(--green-main);color:#fff;padding:10px;border:none;border-radius:var(--radius-md);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;" disabled>Guardar ficha de salida</button>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:flex-end;padding-top:8px;border-top:0.5px solid var(--border-soft);">
+                <button class="clear-btn" onclick="fichasLimpiar()">Cancelar / Nueva búsqueda</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════
+             ACTIVIDAD
+        ══════════════════════════════ -->
+        <section id="actividad" class="section">
+          <div class="panel" style="margin-bottom:12px;">
+            <h3><svg viewBox="0 0 24 24"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 0 1 4-4h12"/></svg>Últimos ingresos</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Serie</th><th>Cliente</th><th>Modelo</th><th>Motivo</th></tr></thead>
+                <tbody id="actIngresosBody"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="grid-two">
+            <div class="panel">
+              <h3><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Actividad reciente</h3>
+              <div id="actFeed"></div>
+            </div>
+            <div class="panel">
+              <h3><svg viewBox="0 0 24 24"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>Últimas salidas</h3>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Serie</th><th>Técnico</th><th>Ficha</th><th>Repuesto</th></tr></thead>
+                  <tbody id="actSalidasBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- ══════════════════════════════
+            STOCK LOGÍSTICA
+        ══════════════════════════════ -->
+        <section id="stock" class="section">
+          <div class="panel">
+            <div class="search-toolbar-pro" style="margin-bottom:20px;">
+              <div class="search-input-row">
+                <div class="search-input-wrap">
+                  <svg class="search-icon-pro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                  <input type="text" id="stockSearchInput" placeholder="Buscar producto, SKU, categoría o ubicación..." onkeydown="if(event.key==='Enter') buscarStock();" oninput="buscarStockDebounced();">
+                </div>
+                <button class="btn-buscar-pro" onclick="buscarStock()">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                  Buscar
+                </button>
+                <button class="btn-limpiar-pro" onclick="limpiarStock()">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+                  Limpiar
+                </button>
+              </div>
+            </div>
+
+            <div id="stockResumen" style="display:none;font-size:12px;color:var(--text-muted);margin-bottom:12px;"></div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>SKU</th>
+                    <th>Categoría</th>
+                    <th>Ubicación</th>
+                    <th style="text-align:right;">Disponible</th>
+                  </tr>
+                </thead>
+                <tbody id="stockBody">
+                  <tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:40px;">Escribe algo para buscar en el stock</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <!-- ══════════════════════════════
+     CHECKLIST LOGÍSTICA
+══════════════════════════════ -->
+<section id="checklist" class="section">
+  <div class="panel" style="max-width:960px;margin:0 auto;">
+
+    <!-- CABECERA -->
+    <div style="background:var(--bg-soft);border-radius:var(--radius-md);padding:16px 20px;margin-bottom:18px;border:0.5px solid var(--border-soft);">
+      <div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;">Datos del documento</div>
+      <div style="display:grid;grid-template-columns:120px 1fr 1fr 1fr;gap:14px;align-items:end;">
+        <div class="filter-group">
+          <label>N° Documento</label>
+          <input type="text" id="cl_correlativo" placeholder="001" style="font-family:'DM Mono',monospace;font-weight:700;text-align:center;">
+        </div>
+        <div class="filter-group">
+          <label>Fecha de evaluación</label>
+          <input type="text" id="cl_fecha" placeholder="DD/MM/AAAA" maxlength="10" oninput="clFormatFecha(this)" style="font-family:'DM Mono',monospace;">
+        </div>
+        <div class="filter-group">
+          <label>Autorizado por</label>
+          <input type="text" id="cl_autorizado" placeholder="Nombre del autorizador"
+  oninput="document.getElementById('cl_aut_nombre').value=this.value;">
+        </div>
+        <div class="filter-group">
+  <label>Técnico responsable</label>
+  <input type="text" id="cl_tecnico" placeholder="Nombre del técnico">
+  </div>
+        <div class="filter-group">
+          <label>Analista de Calidad</label>
+          <input type="text" id="cl_analista" value="Jean Pierre Morales Alejos" 
+  oninput="document.getElementById('cl_eval_nombre').value=this.value;">
+        </div>
+      </div>
+    </div>
+
+    <!-- MOTIVO -->
+    <div class="panel" style="margin-bottom:14px;padding:16px 20px;">
+      <h3>● Motivo de transferencia de repuestos</h3>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;">
+          <input type="radio" name="cl_motivo" value="1" id="cl_motivo1" style="margin-top:3px;accent-color:var(--text-main);">
+          <span>Retiro y transferencia de repuestos realizado a solicitud del cliente, previa coordinación y validación con el área Comercial.</span>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;">
+          <input type="radio" name="cl_motivo" value="2" id="cl_motivo2" style="margin-top:3px;accent-color:var(--text-main);" checked>
+          <span>Transferencia de repuestos para almacenamiento.</span>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;" onclick="document.getElementById('cl_motivo_otro_input').focus()">
+          <input type="radio" name="cl_motivo" value="3" id="cl_motivo3" style="margin-top:3px;accent-color:var(--text-main);">
+          <span>Otro: <input type="text" id="cl_motivo_otro_input" placeholder="Especificar..." onclick="document.getElementById('cl_motivo3').checked=true" style="border:none;border-bottom:1px solid var(--border-med);outline:none;font-size:13px;width:260px;margin-left:4px;background:transparent;"></span>
+        </label>
+      </div>
+      <div class="filter-group" style="margin-top:4px;">
+        <label>Detalle del motivo de transferencia</label>
+        <textarea id="cl_detalle" rows="3" placeholder="Describe el motivo detallado..." style="width:100%;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);padding:10px 12px;font-size:12px;font-family:inherit;resize:vertical;"></textarea>
+      </div>
+    </div>
+
+    <!-- TABLA REPUESTOS -->
+    <div class="panel" style="margin-bottom:14px;padding:16px 20px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <h3 style="margin:0;">● Evaluación técnica — Repuestos a transferir</h3>
+        <button onclick="clAgregarFila()" style="background:var(--text-main);color:#fff;border:none;padding:8px 16px;border-radius:var(--radius-md);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">+ Agregar fila</button>
+      </div>
+      <div class="table-wrap">
+        <table id="cl_tabla_repuestos">
+          <thead>
+            <tr>
+              <th style="width:4%">#</th>
+              <th style="width:16%">Modelo</th>
+              <th style="width:42%">Descripción del repuesto</th>
+              <th style="width:8%">Cant.</th>
+              <th style="width:22%">Observaciones</th>
+              <th style="width:8%"></th>
+            </tr>
+          </thead>
+          <tbody id="cl_filas_body"></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6" style="padding:10px 12px;font-weight:700;font-size:13px;background:var(--bg-soft);">
+                Total de unidades: <span id="cl_total_unidades" style="font-family:'DM Mono',monospace;font-size:16px;">0</span>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- EVIDENCIA FOTOGRÁFICA -->
+    <div class="panel" style="margin-bottom:14px;padding:16px 20px;">
+      <h3>● Evidencia fotográfica (máx. 5 imágenes)</h3>
+      <div id="cl_foto_dropzone" style="border:1.5px dashed var(--border-med);border-radius:var(--radius-md);padding:20px;text-align:center;background:var(--bg-soft);cursor:pointer;" onclick="document.getElementById('cl_foto_input').click()" ondragover="clDragOver(event)" ondrop="clDrop(event)" ondragleave="clDragLeave(event)">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--text-muted)" stroke-width="1.5" style="margin-bottom:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <div style="font-size:13px;font-weight:600;color:var(--text-main);margin-bottom:3px;">Haz clic o arrastra imágenes aquí</div>
+        <div style="font-size:11px;color:var(--text-muted);">JPG, PNG — máx. 5 imágenes, 10 MB c/u</div>
+        <input type="file" id="cl_foto_input" multiple accept="image/*" style="display:none;" onchange="clFotosSeleccionadas(this)">
+      </div>
+      <div id="cl_fotos_preview" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;"></div>
+    </div>
+
+    <!-- CONCLUSIÓN -->
+    <div class="panel" style="margin-bottom:14px;padding:16px 20px;background:var(--bg-soft);">
+      <h3>● Conclusión de evaluación</h3>
+      <p style="font-size:13px;color:var(--text-main);line-height:1.6;font-style:italic;">Luego de la revisión realizada, se determina que los repuestos transferidos se encuentran en condiciones adecuadas para su conservación y reutilización. Por tal motivo, se procede con su entrega al área de Logística para su respectivo registro, almacenamiento y control.</p>
+    </div>
+
+<!-- FIRMAS -->
+<div class="panel" style="margin-bottom:18px;padding:16px 20px;">
+  <h3>● Firmas</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+
+    <!-- Responsable evaluación -->
+    <div style="border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:14px;">
+      <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;">Responsable de evaluación</div>
+      <div class="filter-group" style="margin-bottom:10px;">
+        <label style="display:flex;align-items:center;gap:5px;">
+          Nombre
+          <span style="font-size:13px;opacity:.45;cursor:help;" title="Se completa automáticamente desde el campo Analista de Calidad">🔒</span>
+        </label>
+        <div style="position:relative;">
+        <input type="text" id="cl_eval_nombre" readonly value="Jean Pierre Morales Alejos"
+          style="width:100%;background:var(--bg-soft);color:var(--text-main);cursor:not-allowed;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);padding:10px 36px 10px 12px;font-size:12px;font-family:inherit;font-style:normal;"
+          title="Se completa automáticamente desde Analista de Calidad">
+          <span style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.35;pointer-events:none;">🔒</span>
+        </div>
+      </div>
+      <div style="height:60px;border:1px dashed var(--border-med);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--text-faint);font-size:11px;margin-bottom:10px;">Espacio para firma</div>
+      <div class="filter-group">
+        <label>Fecha</label>
+        <input type="text" id="cl_eval_fecha" placeholder="DD/MM/AAAA" maxlength="10" oninput="clFormatFecha(this)" style="font-family:'DM Mono',monospace;">
+      </div>
+    </div>
+
+    <!-- Responsable autorización -->
+    <div style="border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:14px;">
+      <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;">Responsable de autorización</div>
+      <div class="filter-group" style="margin-bottom:10px;">
+        <label style="display:flex;align-items:center;gap:5px;">
+          Nombre
+          <span style="font-size:13px;opacity:.45;cursor:help;" title="Se completa automáticamente desde el campo Autorizado por">🔒</span>
+        </label>
+        <div style="position:relative;">
+        <input type="text" id="cl_aut_nombre" readonly value=""
+          style="width:100%;background:var(--bg-soft);color:var(--text-main);cursor:not-allowed;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);padding:10px 36px 10px 12px;font-size:12px;font-family:inherit;font-style:normal;"
+          title="Se completa automáticamente desde Autorizado por">
+          <span style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.35;pointer-events:none;">🔒</span>
+        </div>
+      </div>
+      <div style="height:60px;border:1px dashed var(--border-med);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--text-faint);font-size:11px;margin-bottom:10px;">Espacio para firma</div>
+      <div class="filter-group">
+        <label>Fecha</label>
+        <input type="text" id="cl_aut_fecha" placeholder="DD/MM/AAAA" maxlength="10" oninput="clFormatFecha(this)" style="font-family:'DM Mono',monospace;">
+      </div>
+    </div>
+
+    <!-- Recepción logística -->
+    <div style="border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:14px;background:var(--bg-soft);">
+      <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;">Recepción logística</div>
+      <div style="font-size:12px;color:var(--text-muted);font-style:italic;margin-top:8px;">Este bloque lo completa logística a mano en el documento impreso.</div>
+      <div style="height:60px;border:1px dashed var(--border-soft);border-radius:var(--radius-sm);margin-top:12px;"></div>
+    </div>
+
+  </div>
+</div>
+
+    <!-- BOTÓN GENERAR -->
+    <div style="display:flex;justify-content:flex-end;gap:12px;padding-top:8px;border-top:0.5px solid var(--border-soft);">
+      <button onclick="clLimpiar()" class="clear-btn">Limpiar todo</button>
+      <button id="cl_btn_generar" onclick="clGenerarWord()" style="background:var(--text-main);color:#fff;padding:12px 28px;font-size:13px;border-radius:var(--radius-md);border:none;cursor:pointer;font-weight:700;font-family:inherit;display:flex;align-items:center;gap:8px;">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Generar Word y guardar en Drive
+      </button>
+    </div>
+
+    <!-- RESULTADO -->
+    <div id="cl_resultado" style="display:none;margin-top:16px;padding:16px 20px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:var(--radius-md);">
+      <div style="font-size:13px;font-weight:700;color:#166534;margin-bottom:8px;">✓ Documento generado correctamente</div>
+      <a id="cl_resultado_link" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:8px 16px;background:#166534;color:#fff;border-radius:var(--radius-md);font-size:12px;font-weight:600;text-decoration:none;">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Abrir documento en Drive
+      </a>
+    </div>
+
+  </div>
+</section>
+<!-- ══════════════════════════════
+     CHECKLIST BAJA DE EQUIPOS
+══════════════════════════════ -->
+<section id="checklistbaja" class="section">
+  <div class="panel" style="max-width:960px;margin:0 auto;">
+
+    <!-- CABECERA -->
+    <div style="background:var(--bg-soft);border-radius:var(--radius-md);padding:16px 20px;margin-bottom:18px;border:0.5px solid var(--border-soft);">
+      <div style="font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;">Datos del documento</div>
+      <div style="display:grid;grid-template-columns:120px 1fr 1fr 1fr;gap:14px;align-items:end;">
+        <div class="filter-group">
+          <label>N° Documento</label>
+          <input type="text" id="cb_correlativo" placeholder="001" style="font-family:'DM Mono',monospace;font-weight:700;text-align:center;">
+        </div>
+        <div class="filter-group">
+          <label>Fecha de evaluación</label>
+          <input type="text" id="cb_fecha" placeholder="DD/MM/AAAA" maxlength="10" oninput="cbFormatFecha(this)" style="font-family:'DM Mono',monospace;">
+        </div>
+        <div class="filter-group">
+          <label>Autorizado por</label>
+          <input type="text" id="cb_autorizado" placeholder="Nombre del autorizador"
+            oninput="document.getElementById('cb_aut_nombre').value=this.value;">
+        </div>
+        <div class="filter-group">
+          <label>Técnico responsable</label>
+          <input type="text" id="cb_tecnico" placeholder="Nombre del técnico">
+        </div>
+      </div>
+      <div style="margin-top:14px;">
+        <div class="filter-group" style="max-width:300px;">
+          <label>Analista de Calidad</label>
+          <input type="text" id="cb_analista" value="Jean Pierre Morales Alejos"
+            oninput="document.getElementById('cb_eval_nombre').value=this.value;">
+        </div>
+      </div>
+    </div>
+
+    <!-- DATOS DEL EQUIPO -->
+    <div class="panel" style="margin-bottom:14px;padding:16px 20px;">
+      <h3>● Datos del equipo</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:12px;">
+        <div class="filter-group">
+          <label>Modelo</label>
+          <div id="cb_modelo_display" onclick="cbAbrirSelectorModelo()"
+            style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);cursor:pointer;min-height:42px;background:#fff;">
+            <span id="cb_modelo_texto" style="font-size:13px;font-weight:600;color:var(--text-main);">Seleccionar...</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--text-muted)" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          </div>
+          <input type="hidden" id="cb_modelo">
+        </div>
+        <div class="filter-group">
+          <label>Color</label>
+          <input type="text" id="cb_color" placeholder="Ej: Blanco">
+        </div>
+        <div class="filter-group">
+          <label>N° de Serie</label>
+          <input type="text" id="cb_serie" placeholder="Ej: SJWTE2021-...">
+        </div>
+        <div class="filter-group">
+          <label>Fecha de ingreso</label>
+          <input type="text" id="cb_fecha_ingreso" placeholder="DD/MM/AAAA" maxlength="10" oninput="cbFormatFecha(this)" style="font-family:'DM Mono',monospace;">
+        </div>
+        <div class="filter-group">
+          <label>Estado actual</label>
+          <input type="text" id="cb_estado" placeholder="Ej: Inoperativo">
+        </div>
+      </div>
+    </div>
+
+    <!-- MOTIVO DE BAJA -->
+    <div class="panel" style="margin-bottom:14px;padding:16px 20px;">
+      <h3>● Motivo de baja del equipo</h3>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;">
+          <input type="radio" name="cb_motivo" value="1" id="cb_motivo1" style="margin-top:3px;accent-color:var(--text-main);">
+          <span>Daño estructural / falla técnica no reparable</span>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;">
+          <input type="radio" name="cb_motivo" value="2" id="cb_motivo2" style="margin-top:3px;accent-color:var(--text-main);" checked>
+          <span>Deterioro general / desgaste por tiempo de uso</span>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;">
+          <input type="radio" name="cb_motivo" value="3" id="cb_motivo3" style="margin-top:3px;accent-color:var(--text-main);">
+          <span>Costo de reparación mayor al valor recuperable</span>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;">
+          <input type="radio" name="cb_motivo" value="4" id="cb_motivo4" style="margin-top:3px;accent-color:var(--text-main);">
+          <span>Equipo utilizado para repuestos</span>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;" onclick="document.getElementById('cb_motivo_otro_input').focus()">
+          <input type="radio" name="cb_motivo" value="5" id="cb_motivo5" style="margin-top:3px;accent-color:var(--text-main);">
+          <span>Otro: <input type="text" id="cb_motivo_otro_input" placeholder="Especificar..." onclick="document.getElementById('cb_motivo5').checked=true" style="border:none;border-bottom:1px solid var(--border-med);outline:none;font-size:13px;width:260px;margin-left:4px;background:transparent;"></span>
+        </label>
+      </div>
+      <div class="filter-group">
+        <label>Detalle del motivo de baja</label>
+        <textarea id="cb_detalle" rows="3" placeholder="Describe el motivo detallado..." style="width:100%;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);padding:10px 12px;font-size:12px;font-family:inherit;resize:vertical;"></textarea>
+      </div>
+    </div>
+
+    <!-- EVALUACIÓN TÉCNICA - FOTO -->
+    <div class="panel" style="margin-bottom:14px;padding:16px 20px;">
+      <h3>● Evaluación técnica del equipo (foto de la ficha)</h3>
+      <div id="cb_foto_eval_dropzone" style="border:1.5px dashed var(--border-med);border-radius:var(--radius-md);padding:20px;text-align:center;background:var(--bg-soft);cursor:pointer;" onclick="document.getElementById('cb_foto_eval_input').click()">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--text-muted)" stroke-width="1.5" style="margin-bottom:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <div id="cb_foto_eval_label" style="font-size:13px;font-weight:600;color:var(--text-main);margin-bottom:3px;">Haz clic para subir la foto de la ficha de evaluación</div>
+        <div style="font-size:11px;color:var(--text-muted);">JPG, PNG — máx. 10 MB</div>
+        <input type="file" id="cb_foto_eval_input" accept="image/*" style="display:none;" onchange="cbFotoEvalSeleccionada(this)">
+      </div>
+      <div id="cb_foto_eval_preview" style="margin-top:12px;display:none;">
+        <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--bg-soft);border-radius:var(--radius-md);border:0.5px solid var(--border-soft);">
+          <img id="cb_foto_eval_img" src="" style="width:60px;height:60px;object-fit:cover;border-radius:8px;">
+          <div style="flex:1;">
+            <div id="cb_foto_eval_nombre" style="font-size:12px;font-weight:600;"></div>
+            <span style="font-size:11px;color:var(--red-main);cursor:pointer;" onclick="cbQuitarFotoEval()">🗑 Quitar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIEZAS RETIRADAS -->
+    <div class="panel" style="margin-bottom:14px;padding:16px 20px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <h3 style="margin:0;">● Piezas retiradas del equipo</h3>
+        <button onclick="cbAgregarPieza()" style="background:var(--text-main);color:#fff;border:none;padding:8px 16px;border-radius:var(--radius-md);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">+ Agregar pieza</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:5%">#</th>
+              <th style="width:55%">Pieza retirada</th>
+              <th style="width:32%">Observación</th>
+              <th style="width:8%"></th>
+            </tr>
+          </thead>
+          <tbody id="cb_piezas_body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PARTES DESCARTADAS -->
+    <div class="panel" style="margin-bottom:14px;padding:16px 20px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <h3 style="margin:0;">● Partes descartadas</h3>
+        <button onclick="cbAgregarParte()" style="background:var(--text-main);color:#fff;border:none;padding:8px 16px;border-radius:var(--radius-md);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">+ Agregar parte</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:5%">#</th>
+              <th style="width:55%">Componente descartado</th>
+              <th style="width:32%">Motivo del descarte</th>
+              <th style="width:8%"></th>
+            </tr>
+          </thead>
+          <tbody id="cb_partes_body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- EVIDENCIA FOTOGRÁFICA -->
+    <div class="panel" style="margin-bottom:14px;padding:16px 20px;">
+      <h3>● Evidencia fotográfica (máx. 5 imágenes)</h3>
+      <div id="cb_fotos_dropzone" style="border:1.5px dashed var(--border-med);border-radius:var(--radius-md);padding:20px;text-align:center;background:var(--bg-soft);cursor:pointer;" onclick="document.getElementById('cb_fotos_input').click()" ondragover="cbDragOver(event)" ondrop="cbDrop(event)" ondragleave="cbDragLeave(event)">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="var(--text-muted)" stroke-width="1.5" style="margin-bottom:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <div style="font-size:13px;font-weight:600;color:var(--text-main);margin-bottom:3px;">Haz clic o arrastra imágenes aquí</div>
+        <div style="font-size:11px;color:var(--text-muted);">JPG, PNG — máx. 5 imágenes, 10 MB c/u</div>
+        <input type="file" id="cb_fotos_input" multiple accept="image/*" style="display:none;" onchange="cbFotosSeleccionadas(this)">
+      </div>
+      <div id="cb_fotos_preview" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;"></div>
+    </div>
+
+    <!-- FIRMAS -->
+    <div class="panel" style="margin-bottom:18px;padding:16px 20px;">
+      <h3>● Firmas</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+        <div style="border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:14px;">
+          <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;">Responsable de evaluación</div>
+          <div class="filter-group" style="margin-bottom:10px;">
+            <label style="display:flex;align-items:center;gap:5px;">Nombre <span style="font-size:13px;opacity:.45;" title="Se completa desde Analista de Calidad">🔒</span></label>
+            <div style="position:relative;">
+              <input type="text" id="cb_eval_nombre" readonly value="Jean Pierre Morales Alejos"
+                style="width:100%;background:var(--bg-soft);color:var(--text-main);cursor:not-allowed;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);padding:10px 36px 10px 12px;font-size:12px;font-family:inherit;">
+              <span style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.35;pointer-events:none;">🔒</span>
+            </div>
+          </div>
+          <div style="height:60px;border:1px dashed var(--border-med);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--text-faint);font-size:11px;margin-bottom:10px;">Espacio para firma</div>
+          <div class="filter-group">
+            <label>Fecha</label>
+            <input type="text" id="cb_eval_fecha" placeholder="DD/MM/AAAA" maxlength="10" oninput="cbFormatFecha(this)" style="font-family:'DM Mono',monospace;">
+          </div>
+        </div>
+        <div style="border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:14px;">
+          <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;">Responsable de autorización</div>
+          <div class="filter-group" style="margin-bottom:10px;">
+            <label style="display:flex;align-items:center;gap:5px;">Nombre <span style="font-size:13px;opacity:.45;" title="Se completa desde Autorizado por">🔒</span></label>
+            <div style="position:relative;">
+              <input type="text" id="cb_aut_nombre" readonly value=""
+                style="width:100%;background:var(--bg-soft);color:var(--text-main);cursor:not-allowed;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);padding:10px 36px 10px 12px;font-size:12px;font-family:inherit;">
+              <span style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.35;pointer-events:none;">🔒</span>
+            </div>
+          </div>
+          <div style="height:60px;border:1px dashed var(--border-med);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--text-faint);font-size:11px;margin-bottom:10px;">Espacio para firma</div>
+          <div class="filter-group">
+            <label>Fecha</label>
+            <input type="text" id="cb_aut_fecha" placeholder="DD/MM/AAAA" maxlength="10" oninput="cbFormatFecha(this)" style="font-family:'DM Mono',monospace;">
+          </div>
+        </div>
+        <div style="border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:14px;background:var(--bg-soft);">
+          <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;">Recepción logística</div>
+          <div style="font-size:12px;color:var(--text-muted);font-style:italic;margin-top:8px;">Este bloque lo completa logística a mano en el documento impreso.</div>
+          <div style="height:60px;border:1px dashed var(--border-soft);border-radius:var(--radius-sm);margin-top:12px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTÓN GENERAR -->
+    <div style="display:flex;justify-content:flex-end;gap:12px;padding-top:8px;border-top:0.5px solid var(--border-soft);">
+      <button onclick="cbLimpiar()" class="clear-btn">Limpiar todo</button>
+      <button id="cb_btn_generar" onclick="cbGenerarWord()" style="background:var(--text-main);color:#fff;padding:12px 28px;font-size:13px;border-radius:var(--radius-md);border:none;cursor:pointer;font-weight:700;font-family:inherit;display:flex;align-items:center;gap:8px;">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Generar Word y guardar en Drive
+      </button>
+    </div>
+
+    <!-- RESULTADO -->
+    <div id="cb_resultado" style="display:none;margin-top:16px;padding:16px 20px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:var(--radius-md);">
+      <div style="font-size:13px;font-weight:700;color:#166534;margin-bottom:8px;">✓ Documento generado correctamente</div>
+      <a id="cb_resultado_link" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:8px 16px;background:#166534;color:#fff;border-radius:var(--radius-md);font-size:12px;font-weight:600;text-decoration:none;">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Abrir documento en Drive
+      </a>
+    </div>
+
+  </div>
+</section>
+<section id="historial" class="section">
+  <div class="panel">
+    <div class="search-toolbar-pro" style="margin-bottom:20px;">
+      <div class="search-input-row">
+        <div class="search-input-wrap">
+          <svg class="search-icon-pro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" id="histSearchInput"
+            placeholder="Buscar cliente por nombre (mín. 2 letras)..."
+            oninput="histBuscarDebounced()"
+            onkeydown="if(event.key==='Enter') histBuscar();">
+        </div>
+        <button class="btn-buscar-pro" onclick="histBuscar()">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          Buscar
+        </button>
+        <button class="btn-limpiar-pro" onclick="histLimpiar()">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/>
+          </svg>
+          Limpiar
+        </button>
+
+          <!-- NUEVO: botón exportar -->
+          <button id="histBtnExportar" onclick="histAbrirModalPDF()"
+            style="display:flex;align-items:center;gap:7px;padding:0 16px;height:42px;
+            border:0.5px solid var(--border-soft);border-radius:var(--radius-md);
+            background:var(--bg-soft);color:var(--text-muted);font-size:12px;font-weight:600;
+            font-family:inherit;cursor:pointer;white-space:nowrap;transition:.12s;"
+            onmouseenter="this.style.borderColor='var(--text-main)';this.style.color='var(--text-main)'"
+            onmouseleave="this.style.borderColor='var(--border-soft)';this.style.color='var(--text-muted)'">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="12" y1="18" x2="12" y2="12"/>
+              <polyline points="9 15 12 18 15 15"/>
+            </svg>
+            Exportar PDF
+          </button>
+      </div>
+    </div>
+    <div id="histNoResultado" style="display:none;" class="empty-state">
+      No se encontraron servicios para ese cliente.
+    </div>
+    <div id="histResultados"></div>
+  </div>
+</section>
+
+
+
+
+        <!-- MODALES VISOR -->
+<div id="fichasVisorModal" class="modal-overlay" style="z-index:10002;">
+  <div class="viewer-shell">
+    <div class="viewer-header">
+      <div class="viewer-title">
+        <span class="viewer-title-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+        </span>
+        <div id="fichasVisorTitle" class="viewer-title-text">Ficha</div>
+      </div>
+
+      <button class="viewer-close" onclick="fichasCerrarVisor()" title="Cerrar">
+        <svg viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="fichasVisorContent" class="viewer-body"></div>
+
+    <div class="viewer-footer">
+      <a id="fichasVisorLink" href="#" target="_blank" class="viewer-drive-link">
+        <svg viewBox="0 0 24 24">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        Abrir en Drive
+      </a>
+    </div>
+  </div>
+</div>
+<div id="ccVisorModal" class="modal-overlay" style="z-index:10001;">
+  <div class="viewer-shell">
+    <div class="viewer-header">
+      <div class="viewer-title">
+        <span class="viewer-title-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+        </span>
+        <div id="ccVisorTitle" class="viewer-title-text">Archivo</div>
+      </div>
+
+      <button class="viewer-close" onclick="cerrarCCVisor()" title="Cerrar">
+        <svg viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="ccVisorContent" class="viewer-body"></div>
+
+    <div class="viewer-footer">
+      <a id="ccVisorLink" href="#" target="_blank" class="viewer-drive-link">
+        <svg viewBox="0 0 24 24">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        Abrir en Drive
+      </a>
+    </div>
+  </div>
+</div>
+
+    <!-- MODAL DETALLE -->
+    <div id="detalleModal" class="modal-overlay">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 id="modalTitle">Detalle del equipo</h3>
+          <div class="modal-header-actions">
+            <button id="btnGuardarCambiosDetalle" class="save-detail-btn" disabled onclick="guardarCambiosDetalleFinal()">Sin cambios</button>
+            <button class="modal-close" onclick="cerrarModal()">×</button>
+          </div>
+        </div>
+        <div id="modalContent" class="modal-content"><p>Cargando información...</p></div>
+      </div>
+    </div>
+
+    <div id="editModal" class="modal-overlay">
+      <div class="edit-modal-box">
+        <div class="modal-header">
+          <h3 id="editModalTitle">Editar registro</h3>
+          <button class="modal-close" onclick="cerrarEditModal()">×</button>
+        </div>
+        <div class="modal-content edit-modal-content"><div id="editFormContainer"></div></div>
+        <div class="edit-modal-footer">
+          <button class="clear-btn" onclick="cerrarEditModal()">Cancelar</button>
+          <button class="apply-btn" onclick="guardarTemporalEdicion()">Guardar temporalmente</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="filtrosModal" class="modal-overlay">
+      <div class="filter-modal-box">
+        <div class="modal-header">
+          <h3>Filtros avanzados</h3>
+          <button class="modal-close" onclick="cerrarFiltros()">×</button>
+        </div>
+        <div class="filters-grid">
+          <div class="filter-group"><label for="filterModelo">Modelo</label><select id="filterModelo"><option value="">Todos</option></select></div>
+          <div class="filter-group"><label for="filterEstado">Estado</label><select id="filterEstado"><option value="">Todos</option></select></div>
+          <div class="filter-group filter-group-full"><label for="filterFalla">Falla</label><select id="filterFalla"><option value="">Todas</option></select></div>
+          <div class="filter-group filter-group-full">
+          <label for="filterTipoCliente">Tipo de equipo</label>
+          <select id="filterTipoCliente">
+            <option value="">Todos</option>
+            <option value="eden">Solo Eden Agua</option>
+            <option value="cliente">Solo Clientes</option>
+          </select>
+        </div>
+        </div>
+        <div class="filter-actions">
+          <button type="button" class="clear-btn" onclick="limpiarFiltros()">Limpiar</button>
+          <button type="button" class="apply-btn" onclick="aplicarFiltros()">Aplicar filtros</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalEditarIngreso" class="modal-overlay">
+      <div class="filter-modal-box">
+        <div class="modal-header"><h3>Editar ingreso</h3><button class="modal-close" onclick="cerrarModalEditarIngreso()">×</button></div>
+        <div class="filters-grid">
+          <!-- DESPUÉS — reemplazar por fila con ticket + serie + fecha: -->
+          <div class="filter-group-full" style="display:flex;gap:14px;flex-wrap:wrap;">
+            <div class="filter-group" style="flex:0 0 90px;">
+              <label>ID Ticket</label>
+              <input type="text" id="editIngresoTicket" style="border-color:var(--text-main);font-weight:700;text-align:center;">
+            </div>
+            <div class="filter-group" style="flex:1;min-width:160px;">
+              <label for="editIngresoSerie">Serie del producto</label>
+              <input type="text" id="editIngresoSerie">
+            </div>
+            <div class="filter-group" style="flex:1;min-width:140px;">
+              <label for="editIngresoFecha">Fecha de llegada al taller</label>
+              <input type="text" id="editIngresoFecha" placeholder="DD/MM/AAAA">
+            </div>
+          </div>
+          <div class="filter-group filter-group-full"><label for="editIngresoCliente">Cliente o Eden Agua</label><input type="text" id="editIngresoCliente"></div>
+          <div class="filter-group filter-group-full"><label for="editIngresoMotivo">Detalle del motivo a taller</label><textarea id="editIngresoMotivo" rows="3"></textarea></div>
+          <div class="filter-group"><label for="editIngresoFicha">Número de ficha de ingreso</label><input type="text" id="editIngresoFicha"></div>
+          <div class="filter-group"><label for="editIngresoHora">Hora de llegada</label><input type="text" id="editIngresoHora"></div>
+          <div class="filter-group"><label for="editIngresoTecnicoEntrega">Técnico entrega</label><input type="text" id="editIngresoTecnicoEntrega"></div>
+          <div class="filter-group"><label for="editIngresoModelo">Modelo</label><input type="text" id="editIngresoModelo"></div>
+          <div class="filter-group"><label for="editIngresoColor">Color</label><input type="text" id="editIngresoColor"></div>
+          <div class="filter-group"><label for="editIngresoBandeja">Bandeja</label><input type="text" id="editIngresoBandeja"></div>
+        </div>
+        <div class="filter-group" style="padding:0 24px 14px;">
+          <label for="editIngresoEstado">Estado del equipo</label>
+          <select id="editIngresoEstado" onchange="actualizarColorSelectEstado()" style="font-weight:600;border:0.5px solid var(--border-soft);height:40px;border-radius:var(--radius-md);padding:0 12px;outline:none;cursor:pointer;font-family:inherit;font-size:12px;">
+            <option value="En lista de espera para reparación">En lista de espera para reparación</option>
+            <option value="Operativo pasa a almacén">Operativo pasa a almacén</option>
+            <option value="Listo para devolver a cliente">Listo para devolver a cliente</option>
+            <option value="Sin estado">Sin estado</option>
+          </select>
+        </div>
+        <div class="filter-actions">
+          <button type="button" class="clear-btn" onclick="cerrarModalEditarIngreso()">Cancelar</button>
+          <button type="button" class="apply-btn" id="btnGuardarIngresoTemp" onclick="guardarIngresoTemporal()">Guardar temporalmente</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalEditarSalida" class="modal-overlay">
+      <div class="filter-modal-box">
+        <div class="modal-header"><h3>Editar salida</h3><button class="modal-close" onclick="cerrarModalEditarSalida()">×</button></div>
+        <div class="filters-grid">
+          <div class="filter-group"><label for="editSalidaSerie">Serie del producto</label><input type="text" id="editSalidaSerie"></div>
+          <div class="filter-group"><label for="editSalidaFecha">Fecha de salida del taller</label><input type="text" id="editSalidaFecha" placeholder="DD/MM/AAAA"></div>
+          <div class="filter-group"><label for="editSalidaTecnico">Técnico responsable de reparación</label><input type="text" id="editSalidaTecnico"></div>
+          <div class="filter-group"><label for="editSalidaFicha">Número de ficha de salida</label><input type="text" id="editSalidaFicha"></div>
+          <div class="filter-group filter-group-full"><label for="editSalidaProcedimiento">Procedimiento de reparación</label><textarea id="editSalidaProcedimiento" rows="5"></textarea></div>
+          <div class="filter-group filter-group-full"><label for="editSalidaRepuestos">Repuestos utilizados</label><textarea id="editSalidaRepuestos" rows="3"></textarea></div>
+          <div class="filter-group"><label for="editSalidaHoraTermino">Hora de término de reparación</label><input type="text" id="editSalidaHoraTermino"></div>
+          <div class="filter-group"><label>Consumibles</label><input type="text" id="editSalidaConsumibles"></div>
+          <div class="filter-group"><label>Hora de Inicio de Reparación</label><input type="text" id="editSalidaHoraInicio"></div>
+        </div>
+        <div class="filter-actions">
+          <button type="button" class="clear-btn" onclick="cerrarModalEditarSalida()">Cancelar</button>
+          <button type="button" class="apply-btn" id="btnGuardarSalidaTemp" onclick="guardarSalidaTemporal()">Guardar temporalmente</button>
+        </div>
+      </div>
+    </div>
+
+<!-- ══════════════════════════════
+     MODAL ALERTAS SAC
+══════════════════════════════ -->
+<div id="sacModal" class="modal-overlay" style="z-index:10005;align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:18px;width:min(1380px,98vw);max-height:94vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 28px 90px rgba(13,13,12,.24);">
+
+    <!-- Header -->
+    <div style="padding:18px 24px;border-bottom:0.5px solid var(--border-soft);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:36px;height:36px;background:var(--text-main);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text-main);">Alertas de Ticket SAC</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:2px;" id="sacModalSubtitle">Cargando registros...</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button onclick="loadSACFresh()" style="display:flex;align-items:center;gap:5px;padding:7px 12px;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);background:var(--bg-soft);cursor:pointer;font-size:11px;font-weight:600;color:var(--text-muted);font-family:inherit;">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          Actualizar
+        </button>
+        <button onclick="cerrarSACModal()" style="width:30px;height:30px;border-radius:50%;border:0.5px solid var(--border-soft);background:var(--bg-soft);cursor:pointer;font-size:17px;color:var(--text-muted);display:flex;align-items:center;justify-content:center;">×</button>
+      </div>
+    </div>
+
+    <!-- Stat cards -->
+    <div id="sacStats" style="padding:12px 24px;border-bottom:0.5px solid var(--border-soft);display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;"></div>
+
+    <!-- Filtros: año + status tabs + búsqueda -->
+    <div style="padding:10px 24px;border-bottom:0.5px solid var(--border-soft);display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+
+      <!-- Selector de año -->
+      <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="var(--text-muted)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <select id="sacAnioSelect" onchange="sacFiltrarAnio(this.value)"
+          style="border:0.5px solid var(--border-soft);border-radius:var(--radius-md);padding:6px 10px;font-size:12px;font-family:inherit;color:var(--text-main);outline:none;cursor:pointer;background:#fff;font-weight:600;">
+          <option value="todos">Todos los años</option>
+        </select>
+      </div>
+
+      <div style="width:1px;height:22px;background:var(--border-soft);flex-shrink:0;"></div>
+
+      <!-- Tabs status -->
+      <div class="search-mode-tabs" id="sacTabs" style="width:auto;flex-shrink:0;">
+        <button class="search-tab active" data-sac="todos"  onclick="sacFiltrar('todos',this)">Todos</button>
+        <button class="search-tab" data-sac="espera"  onclick="sacFiltrar('espera',this)">En espera</button>
+        <button class="search-tab" data-sac="listo"   onclick="sacFiltrar('listo',this)">Listos para entregar</button>
+        <button class="search-tab" data-sac="sin"     onclick="sacFiltrar('sin',this)">Sin ingresar</button>
+      </div>
+
+      <!-- Búsqueda -->
+      <div style="display:flex;align-items:center;gap:7px;padding:0 10px;border:0.5px solid var(--border-soft);border-radius:var(--radius-md);background:#fff;flex:1;min-width:180px;max-width:320px;margin-left:auto;">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="var(--text-muted)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="sacBuscarInput" placeholder="Buscar cliente, ticket, asesor..."
+          style="border:none;outline:none;font-size:12px;padding:8px 0;font-family:inherit;background:transparent;width:100%;"
+          oninput="sacBuscar(this.value)">
+      </div>
+    </div>
+
+    <!-- Tabla — sin scroll horizontal -->
+    <div style="flex:1;overflow-y:auto;overflow-x:hidden;">
+      <table style="width:100%;border-collapse:collapse;table-layout:fixed;">
+        <colgroup>
+        <col style="width:65px;">
+        <col style="width:75px;">
+        <col style="width:82px;">
+        <col style="width:15%;">
+        <col style="width:80px;">
+        <col>                        <!-- Seguimiento SAC -->
+        <col>                        <!-- Comentario cliente ← NUEVO -->
+        <col style="width:110px;">
+        <col style="width:80px;">
+        <col style="width:58px;">
+        </colgroup>
+        <thead>
+          <tr style="position:sticky;top:0;background:#fff;z-index:1;box-shadow:0 1px 0 var(--border-soft);">
+            <th style="padding:10px 12px;text-align:left;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Ticket</th>
+            <th style="padding:10px 12px;text-align:left;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Asesor</th>
+            <th style="padding:10px 12px;text-align:left;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Fecha</th>
+            <th style="padding:10px 12px;text-align:left;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Cliente</th>
+            <th style="padding:10px 12px;text-align:left;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Producto</th>
+            <th style="padding:10px 12px;text-align:left;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Seguimiento SAC</th>
+            <th style="padding:10px 12px;text-align:left;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Comentario cliente</th>
+            <th style="padding:10px 12px;text-align:left;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Status</th>
+            <th style="padding:10px 12px;text-align:left;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">F. Rep.</th>
+            <th style="padding:10px 12px;text-align:center;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.6px;">Gar.</th>
+          </tr>
+        </thead>
+        <tbody id="sacTableBody">
+          <tr><td colspan="10" style="padding:48px;text-align:center;color:var(--text-muted);">Cargando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:11px 24px;border-top:0.5px solid var(--border-soft);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+      <span id="sacContador" style="font-size:11px;color:var(--text-muted);font-family:'DM Mono',monospace;">—</span>
+      <button onclick="cerrarSACModal()" class="clear-btn">Cerrar</button>
+    </div>
+
+  </div>
+</div>
+    <?!= include('JavaScript'); ?>
+
+    <script>
+    // ── Tabs de período rápido ──
+function aplicarTabPeriodo(periodo, btn) {
+  document.querySelectorAll('#dashTimeTabs .search-tab').forEach(function(t) {
+    t.classList.remove('active');
+  });
+  if (btn) btn.classList.add('active');
+
+  var hoy = new Date();
+  hoy = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
+
+  var desde;
+  var hasta = new Date(hoy);
+
+  if (periodo === 'hoy') {
+    desde = new Date(hoy);
+  } else if (periodo === 'semana') {
+    var dia = hoy.getDay() === 0 ? 6 : hoy.getDay() - 1;
+    desde = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() - dia);
+  } else {
+    desde = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+  }
+
+  var sectionActiva = document.querySelector('.section.active-section');
+  var sectionId = sectionActiva ? sectionActiva.id : 'dashboard';
+
+  if (sectionId === 'equipos') {
+    fechaDesde = desde;
+    fechaHasta = hasta;
+
+    rangoFechasActual.desde = formatearFecha(desde);
+    rangoFechasActual.hasta = formatearFecha(hasta);
+    rangoFechasActual.desdeISO = toISODate(desde);
+    rangoFechasActual.hastaISO = toISODate(hasta);
+
+    var inputDesde = document.getElementById('input-desde');
+    var inputHasta = document.getElementById('input-hasta');
+
+    if (inputDesde) inputDesde.value = rangoFechasActual.desde;
+    if (inputHasta) inputHasta.value = rangoFechasActual.hasta;
+
+    paginaActual = 1;
+    actualizarEstilosFechas();
+    buscarEquipos();
+    return;
+  }
+
+  dashFechaDesde = desde;
+  dashFechaHasta = hasta;
+
+  dashRangoFechasActual.desde = formatearFecha(desde);
+  dashRangoFechasActual.hasta = formatearFecha(hasta);
+  dashRangoFechasActual.desdeISO = toISODate(desde);
+  dashRangoFechasActual.hastaISO = toISODate(hasta);
+
+  var dashInputDesde = document.getElementById('dash-input-desde');
+  var dashInputHasta = document.getElementById('dash-input-hasta');
+
+  if (dashInputDesde) dashInputDesde.value = dashRangoFechasActual.desde;
+  if (dashInputHasta) dashInputHasta.value = dashRangoFechasActual.hasta;
+
+  dashActualizarEstilos();
+  loadDashboard();
+}
+    </script>
+  </body>
+</html>
